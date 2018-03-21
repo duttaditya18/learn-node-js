@@ -12,3 +12,4 @@ Blogs are rendered using the data from the `./src/mock/posts.json`.
 * Change the directory : `cd learn-node-js/landing-blog-express`
 * Install dependencies : `npm install`.
 * Run the server : `npm start`.
+* Visit the frontend server at : `http://127.0.0.1:1337/`.
