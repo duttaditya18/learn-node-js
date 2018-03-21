@@ -2,7 +2,9 @@
 
 This was made using [Express](https://expressjs.com/) and [Pugjs](https://pugjs.org) at the backend and a template provided by github.com/hdngr/treehouse-express-basics. Several Front End libiraries were used (See the `./src/public` folder).
 
-A basic API implementation was also done.
+A basic API implementation was also done. (Check the `/api` route in `./app.js`)
+
+Blogs are rendered using the data from the `./src/mock/posts.json`.
 
 ### Instlallation:
 
