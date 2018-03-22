@@ -2,12 +2,7 @@ const express = require('express');
 const bodyParser= require('body-parser');
 const app = express();
 
-const serverIp = '127.0.0.1';
-const serverPort = 1337;
-
-app.listen(serverPort, serverIp, function() {
-    console.log(`Server running at 'http://${serverIp}:${serverPort}/'`);
-});
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
@@ -16,3 +11,10 @@ app.get('/', (req, res) => {
 app.post('/quotes', (req, res) => {
     console.log(req.body);
 })
+
+const serverIp = '127.0.0.1';
+const serverPort = 1337;
+
+app.listen(serverPort, serverIp, function() {
+    console.log(`Server running at 'http://${serverIp}:${serverPort}/'`);
+});
