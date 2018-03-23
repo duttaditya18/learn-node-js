@@ -23,6 +23,10 @@ app.get('/', (req, res) => {
 });
 
 app.post('/item', (req, res) => {
+    if (req.body.name === "" || req.body.item === "") {
+        res.redirect('/');
+        return;
+    }
     db.collection('item').save(req.body, (err, result) => {
         if(err) {
             return console.log(err);
