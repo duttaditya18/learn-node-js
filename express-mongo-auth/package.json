@@ -4,12 +4,16 @@
   "description": "",
   "author": "duttaditya18",
   "scripts": {
-    "start": "node ./app.js"
+    "start": "node ./app.js",
+    "dev": "nodemon ./app.js"
   },
   "dependencies": {
     "body-parser": "^1.13.3",
     "express": "^4.13.4",
     "pug": "^2.0.0-beta2"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.17.2"
+  }
 }
