@@ -34,7 +34,10 @@ app.use(function(err, req, res, next) {
   });
 });
 
-// listen on port 3000
-app.listen(3000, function () {
-  console.log('Express app listening on port 3000');
+const serverIp = '127.0.0.1';
+const serverPort = 1337;
+
+app.listen(serverPort, serverIp, function() {
+	console.log(`Server running at 'http://${serverIp}:${serverPort}/'`);
 });
+

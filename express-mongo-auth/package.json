@@ -4,7 +4,7 @@
   "description": "",
   "author": "duttaditya18",
   "scripts": {
-    "start": "node ./app"
+    "start": "node ./app.js"
   },
   "dependencies": {
     "body-parser": "^1.13.3",
