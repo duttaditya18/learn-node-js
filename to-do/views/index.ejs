@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>to-do</title>
+    </head>
+
+    <body>
+        <h1>to-do</h1>
+
+        <ul class="items">
+            <% for(var i=0; i<items.length; i++) {%>
+                <li class="items">
+                    <span><%= items[i].name %></span>
+                    <span>:</span>
+                    <span><%= items[i].item %></span>
+                </li>
+            <% } %>
+        </ul>
+
+        <form action="/item" method="POST">
+            <input type="text" placeholder="name" name="name">
+            <input type="text" placeholder="item" name="item">
+            <button type="submit">Submit</button>
+            <button type="submit" formaction="/reset">Reset</button>
+        </form>
+    </body>
+</html>
