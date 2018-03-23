@@ -1,0 +1,20 @@
+nav.navbar.navbar-fixed-top.navbar-dark.bg-inverse
+  button.navbar-toggler.hidden-md-up.pull-xs-right(type='button', data-toggle='collapse', data-target='#navbar') &#x2630;
+  #navbar.navbar-nav.collapse.navbar-toggleable-sm
+    .container
+      a.navbar-brand(href='/')
+        i.icn-logo.material-icons bookmark_border
+        | Bookworm
+      .nav-items.clearfix
+        if !currentUser
+          a.nav-item.nav-link(href='register') Sign Up
+        a.nav-item.nav-link(href='about') About
+        a.nav-item.nav-link(href='contact') Contact
+        a.nav-item.nav-link(href='profile') My Profile
+        
+      if currentUser
+        div
+          img.avatar.img-circle.hidden-xs-down(src='/images/avatar.png', alt='avatar')
+          a.btn.btn-light.pull-md-right(href='/logout') Log out
+      else  
+        a.btn.btn-info.pull-md-right(href='login') Login
