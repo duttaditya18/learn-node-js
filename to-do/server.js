@@ -1,13 +1,12 @@
 const express = require('express');
 const bodyParser= require('body-parser');
 const mongodb = require('mongodb');
-const MongoClient = mongodb.MongoClient;
 
 const app = express();
 var db;
 
 
-MongoClient.connect('mongodb://localhost:27017/', (err, client) => {
+mongodb.MongoClient.connect('mongodb://localhost:27017/', (err, client) => {
     if(err) {
         return console.log(err);
     }
