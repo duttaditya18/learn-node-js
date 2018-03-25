@@ -4,13 +4,14 @@ const mongodb = require('mongodb');
 
 const app = express();
 var db;
-
+var collection;
 
 mongodb.MongoClient.connect('mongodb://localhost:27017/', (err, client) => {
     if(err) {
         return console.log(err);
     }
     db = client.db('to-do');
+    collection = db.collection('item');
 })
 
 app.set('view engine', 'ejs');
@@ -20,13 +21,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
-    var cursor = db.collection('item').find().toArray(function(err, results) {
+    var cursor = collection.find().toArray(function(err, results) {
         res.render('index.ejs', {items: results});
     });
 });
 
 app.post('/item', (req, res) => {
-    db.collection('item').save(req.body, (err, result) => {
+    collection.save(req.body, (err, result) => {
         if(err) {
             return console.log(err);
         }
@@ -37,7 +38,7 @@ app.post('/item', (req, res) => {
 
 app.delete('/item', (req, res) => {
     var deleter = new mongodb.ObjectID(req.body._id);
-    db.collection('item').deleteOne({_id: deleter}, (err, result) => {
+    collection.deleteOne({_id: deleter}, (err, result) => {
         if(err) {
             return console.log(err);
         }
