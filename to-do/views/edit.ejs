@@ -1,0 +1,17 @@
+<%- include('header') -%>
+
+<h1>Edit : _id : <%= document._id %></h1>
+
+<form method="get" action="/">
+    <button>Go Back</button>
+</form>
+
+<br>
+
+<form action="/edit/<%= document._id %>" method="POST">
+    <input type="text" placeholder="name" name="name" value="<%= document.name %>">
+    <input type="text" placeholder="item" name="item" value="<%= document.item %>">
+    <button type="submit">Edit</button>
+</form>
+
+<%- include('footer') -%>

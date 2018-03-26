@@ -37,7 +37,7 @@ app.post('/item', (req, res) => {
 });
 
 app.delete('/item', (req, res) => {
-    var deleter = new mongodb.ObjectID(req.body._id);
+    var deleter = mongodb.ObjectID(req.body._id);
     collection.deleteOne({_id: deleter}, (err, result) => {
         if(err) {
             return console.log(err);
@@ -45,6 +45,28 @@ app.delete('/item', (req, res) => {
         console.log(`Deleted the document with _id : "${req.body._id}" from the database.`);
         res.redirect('/');
     });
+});
+
+app.get('/edit/:_id', function(req, res) {
+    var _id = mongodb.ObjectID(req.params._id);
+
+    collection.findOne({_id: _id}, (err, document) => {
+        if(err) {
+            return console.log(err);
+        }
+        res.render('edit.ejs', {document: document});
+    });
+});
+
+app.post('/edit/:_id', function(req, res) {
+    var _id = mongodb.ObjectID(req.params._id);
+    collection.updateOne({_id: _id}, {$set:{name: req.body.name, item: req.body.item}}, (err) => {
+        if(err) {
+            return console.log(err);
+        }
+        console.log(`Edited the document with _id : "${_id}" to name : "${req.body.name}" and item : "${req.body.item}" in the database.`);
+    });
+    res.redirect('/');
 });
 
 app.post('/reset', (req, res) => {
@@ -56,6 +78,7 @@ app.post('/reset', (req, res) => {
         res.redirect('/');
     });
 });
+
 
 const serverIp = '127.0.0.1';
 const serverPort = 1337;
