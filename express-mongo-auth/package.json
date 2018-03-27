@@ -8,8 +8,10 @@
     "dev": "nodemon ./app.js"
   },
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.13.3",
     "express": "^4.13.4",
+    "mongoose": "^5.0.11",
     "pug": "^2.0.0-beta2"
   },
   "license": "MIT",
