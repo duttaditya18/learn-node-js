@@ -1,0 +1,30 @@
+nav#mainNav.navbar.navbar-default.navbar-fixed-top
+    .container-fluid
+        // Brand and toggle get grouped for better mobile display
+        .navbar-header
+            a.navbar-brand.page-scroll(href='/') FitLog.io
+        ul.nav.navbar-nav.navbar-right
+            li
+                if path === '/'
+                    a(href='/blog') Blog
+                else
+                    a(href='/') Home
+
+            if path === '/'
+                li
+                    a.page-scroll(href='#about') About
+                li
+                    a.page-scroll(href='#services') Services
+                li
+                    a.page-scroll(href= '#portfolio') Portfolio
+                li
+                    a.page-scroll(href='#contact') Contact
+            else
+                li
+                    a.page-scroll(href= fullUrl + '#about') About
+                li
+                    a.page-scroll(href= fullUrl + '#services') Services
+                li
+                    a.page-scroll(href= fullUrl + '#portfolio') Portfolio
+                li
+                    a.page-scroll(href= fullUrl + '#contact') Contact
