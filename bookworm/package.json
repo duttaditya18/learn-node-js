@@ -4,8 +4,8 @@
   "description": "",
   "author": "duttaditya18",
   "scripts": {
-    "start": "node ./app.js",
-    "dev": "nodemon ./app.js"
+    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/app.js"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
