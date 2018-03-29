@@ -18,6 +18,11 @@ router.get('/contact', function(req, res, next) {
   return res.render('contact', { title: 'Contact' });
 });
 
+// GET /search
+router.get('/search', mid.loggedOut, function(req, res, next) {
+  return res.render('search', { title: 'Search'});
+});
+
 // GET /logout
 router.get('/logout', function(req, res, next) {
   if(req.session) {
@@ -39,8 +44,8 @@ router.get('/login', mid.loggedOut, function(req, res, next) {
 
 // POST /login
 router.post('/login', function(req, res, next) {
-  if(req.body.email && req.body.password) {
-    user.authenticate(req.body.email, req.body.password, function(error, user) {
+  if(req.body.name && req.body.password) {
+    user.authenticate(req.body.name, req.body.password, function(error, user) {
       if(error || !user) {
         var err = new Error('Wrong email or password.');
         err.status = 401;
@@ -58,15 +63,29 @@ router.post('/login', function(req, res, next) {
 });
 
 // GET /profile
-router.get('/profile', mid.requiresLogin, function(req, res, next) {
-  user.findById(req.session.userId).exec(function(error, user) {
-    if(error) {
-      return next(error);
-    } else {
+router.get('/profile/:name?', mid.requiresLogin, function(req, res, next) {
+  var name = req.params.name;
+  if(!name) {
+    user.findById(req.session.userId).exec(function(error, user) {
+      if(error) {
+        return next(error);
+      } else {
+        var title = `Profile | ${user.name}`;
+        return res.render('profile', { title: title, name: user.name, favorite: user.favoriteBook });
+      }
+    });
+  } else if(name) {
+    user.findOne({ 'name': name }, function(err, user) {
+      if(!user) {
+        var err = new Error('User not found.');
+        err.status = 404;
+        return next(err);
+      } else if(user) {
       var title = `Profile | ${user.name}`;
       return res.render('profile', { title: title, name: user.name, favorite: user.favoriteBook });
-    }
-  })
+      }
+    });
+  }
 });
 
 // GET /register

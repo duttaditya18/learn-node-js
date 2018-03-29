@@ -7,10 +7,10 @@ block content
         h1.display-4.m-b-2 Log In
         form(method='POST', action='/login')
           .form-group
-            label(for='email') Email address
-            input.form-control#email(type='email', placeholder='Enter email', name='email')
-            small.form-text.text-muted We'll never share your email with anyone else.
+            label(for='name') Username
+            input.form-control#name(type='text', placeholder='Enter username', name='name')
           .form-group
             label(for='password') Password
             input.form-control#password(type='password', placeholder='Enter password', name='password')
           button.btn.btn-primary(type='submit') Log in
+          a.btn.btn-info.float-right(href='/register') Register

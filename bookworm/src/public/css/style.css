@@ -77,6 +77,9 @@ a:hover {
 .btn {
 	transition: .4s;
 }
+.float-right {
+	float: right;
+}
 
 /* Icon Styles */
 
@@ -89,6 +92,9 @@ a:hover {
 	border-radius: 50%;
 	border: solid 2px;
 	padding: .5rem;
+}
+.icn-search {
+	float: left;
 }
 .avatar {
 	width: 35px;
