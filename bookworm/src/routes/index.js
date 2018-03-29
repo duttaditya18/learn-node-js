@@ -17,6 +17,20 @@ router.get('/contact', function(req, res, next) {
   return res.render('contact', { title: 'Contact' });
 });
 
+// GET /logout
+router.get('/logout', function(req, res, next) {
+  if(req.session) {
+    // delelte session object
+    req.session.destroy(function(err) {
+      if(err) {
+        return next(err);
+      } else {
+        return res.redirect('/');
+      }
+    })
+  }
+});
+
 // GET /login
 router.get('/login', function(req, res, next) {
   return res.render('login', { title: 'Login'});
