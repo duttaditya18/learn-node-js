@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 });
 
 // GET /about
-router.get('/about', mid.requiresLogin, function(req, res, next) {
+router.get('/about', function(req, res, next) {
   return res.render('about', { title: 'About' });
 });
 
