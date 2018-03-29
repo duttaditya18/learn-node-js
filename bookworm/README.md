@@ -6,8 +6,12 @@ The template was provided by Teamtreehouse here : https://github.com/treehouse-p
 
 ### Instlallation:
 
+* To run this, you need to set up a local MongoDB server or change the address, to an already existing one in `/app.js`.
 * Clone the repository : `git clone https://github.com/duttaditya18/learn-node-js.git` 
 * Change the directory : `cd learn-node-js/bookworm`
 * Install dependencies : `npm install`.
 * Run the server : `npm start`.
 * Visit the frontend server at : `http://127.0.0.1:1337/`.
+
+
+Please note that this uses the `sessions` and `users` collection in the `bookworm` database. If you are already using that, make a new database cluster.
