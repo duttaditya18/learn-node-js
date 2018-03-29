@@ -20,6 +20,7 @@ a:hover {
 	margin-bottom: 2.5rem;
 }
 .main {
+	margin: 0 auto;
 	color: #fff;
 	min-height: calc(100vh - 34px);
 }
