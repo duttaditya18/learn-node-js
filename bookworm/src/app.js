@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var mongoStore = require('connect-mongo')(session);
+
 var app = express();
 
 // mongodb connection
@@ -66,4 +67,3 @@ const serverPort = 1337;
 app.listen(serverPort, serverIp, function() {
 	console.log(`Server running at 'http://${serverIp}:${serverPort}/'`);
 });
-
