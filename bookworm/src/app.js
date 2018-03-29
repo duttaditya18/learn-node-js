@@ -20,7 +20,7 @@ app.use(session({
   store: new mongoStore({
     mongooseConnection: db
   })
-}))
+}));
 
 // make user ID available in templates
 app.use(function(req, res, next) {
