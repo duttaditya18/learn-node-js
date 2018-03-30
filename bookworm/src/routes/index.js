@@ -23,6 +23,11 @@ router.get('/search', mid.loggedOut, function(req, res, next) {
   return res.render('search', { title: 'Search'});
 });
 
+// POST /search
+router.post('/search', mid.loggedOut, function(req, res, next) {
+  return res.send(req.body);
+});
+
 // GET /logout
 router.get('/logout', function(req, res, next) {
   if(req.session) {

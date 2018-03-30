@@ -51,6 +51,25 @@ a:hover {
 	vertical-align: top;
 	margin: 3px 0 0 4px;
 }
+.text-center {
+	text-align: center;
+}
+.search-top[type=text] {
+	background-image: url(../images/searchicon.png);
+    background-position: 10px 8px;
+	background-repeat: no-repeat;
+	padding: 7px 20px 7px 40px;
+	margin-left: 100px;
+    width: 120px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+.search-top[type=text]:focus {
+    width: 200px;
+}
+.nav-form {
+	margin: 0;
+}
 
 /* Button Styles */
 
@@ -95,6 +114,9 @@ a:hover {
 }
 .icn-search {
 	float: left;
+}
+.icn-search-page {
+	font-size: 60px;
 }
 .avatar {
 	width: 35px;
