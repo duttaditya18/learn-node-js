@@ -19,13 +19,33 @@ router.get('/contact', function(req, res, next) {
 });
 
 // GET /search
-router.get('/search', mid.loggedOut, function(req, res, next) {
-  return res.render('search', { title: 'Search'});
+router.get('/search', function(req, res, next) {
+  user.find({}, function(err, users) {
+    if(err) {
+      return next(err);
+    }
+    var userMap = [];
+
+    users.forEach(function(user, i) {
+      userMap[i] = user;
+    });
+    return res.render('search', { title: 'Search', userList: userMap });
+  });
 });
 
 // POST /search
-router.post('/search', mid.loggedOut, function(req, res, next) {
-  return res.send(req.body);
+router.post('/search', function(req, res, next) {
+  user.find({}, function(err, users) {
+    if(err) {
+      return next(err);
+    }
+    var userMap = [];
+
+    users.forEach(function(user, i) {
+      userMap[i] = user.name;
+    });
+    return res.send(userMap);
+  });
 });
 
 // GET /logout
@@ -75,8 +95,7 @@ router.get('/profile/:name?', mid.requiresLogin, function(req, res, next) {
       if(error) {
         return next(error);
       } else {
-        var title = `Profile | ${user.name}`;
-        return res.render('profile', { title: title, name: user.name, favorite: user.favoriteBook });
+        return res.render('profile', { title: user.name, name: user.name, favorite: user.favoriteBook });
       }
     });
   } else if(name) {
@@ -86,8 +105,7 @@ router.get('/profile/:name?', mid.requiresLogin, function(req, res, next) {
         err.status = 404;
         return next(err);
       } else if(user) {
-      var title = `Profile | ${user.name}`;
-      return res.render('profile', { title: title, name: user.name, favorite: user.favoriteBook });
+      return res.render('profile', { title: user.name, name: user.name, favorite: user.favoriteBook });
       }
     });
   }

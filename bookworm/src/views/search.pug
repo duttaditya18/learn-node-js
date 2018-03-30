@@ -5,8 +5,16 @@ block content
     .col-md-6.col-md-offset-3
       h1.display-4.m-b-2.text-center 
         i.material-icons.icn-search-page search
-      form(method='POST', action='/search')
-        .form-group
-          label(for='search') Username
-          input.form-control#search(type="text" name="search" placeholder="Search..")
-        button.btn.btn-primary(type='submit') Search
+      .form-group
+        input.form-control#searchfield(type="text" name="search" placeholder="Search.." onkeyup="searchuser();")
+      
+      #outer-div-search
+        .row#row-search
+          each user in userList
+            .card.mb-3.bg-dark
+              .card-header#user-name @#{user.name}
+              .card-body
+                p.card-text Favorite Book : 
+                  span#user-fav #{user.favoriteBook}
+                p.card-text
+                  small.text-muted#user-mail= user.email
