@@ -29,7 +29,7 @@ function searchuser() {
   myRow.id = "row-search";
   myRow.className = "row";
   for(var i = 0; i < result.length; i++) {
-    myRow.innerHTML += "<div class=\"card mb-3 bg-dark\"><div class=\"card-header\" id=\"user-name\">" + result[i].name + "</div><div class=\"card-body\"><p class=\"card-text\">Favorite Book : <span id=\"user-fav\">" + result[i].favorite + "</span></p><p class=\"card-text\"><small class=\"text-muted\" id=\"user-mail\">" + result[i].mail + "</small></p></div></div>";
+    myRow.innerHTML += "<a href=\"/profile/" + result[i].name + "\"><div class=\"card mb-3 bg-dark\"><div class=\"card-header\" id=\"user-name\">" + result[i].name + "</div><div class=\"card-body\"><p class=\"card-text\">Favorite Book : <span id=\"user-fav\">" + result[i].favorite + "</span></p><p class=\"card-text\"><small class=\"text-muted\" id=\"user-mail\">" + result[i].mail + "</small></p></div></div></a>";
   }
   console.log(result);
   console.log(myRow);

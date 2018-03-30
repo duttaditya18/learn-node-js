@@ -11,10 +11,11 @@ block content
       #outer-div-search
         .row#row-search
           each user in userList
-            .card.mb-3.bg-dark
-              .card-header#user-name @#{user.name}
-              .card-body
-                p.card-text Favorite Book : 
-                  span#user-fav #{user.favoriteBook}
-                p.card-text
-                  small.text-muted#user-mail= user.email
+            a(href='/profile/@' + user.name)
+              .card.mb-3.bg-dark
+                .card-header#user-name @#{user.name}
+                .card-body
+                  p.card-text Favorite Book : 
+                    span#user-fav #{user.favoriteBook}
+                  p.card-text
+                    small.text-muted#user-mail= user.email

@@ -99,6 +99,7 @@ router.get('/profile/:name?', mid.requiresLogin, function(req, res, next) {
       }
     });
   } else if(name) {
+    name = name.replace('@', '');
     user.findOne({ 'name': name }, function(err, user) {
       if(!user) {
         var err = new Error('User not found.');

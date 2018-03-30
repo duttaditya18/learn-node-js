@@ -71,7 +71,7 @@ a:hover {
 	margin: 0;
 }
 .card.bg-dark {
-	background: #343a40 !important;
+	background: #343a40;
 	border: 1px solid rgba(0,0,0,.125);
 }
 .card.bg-dark .card-header {
@@ -82,6 +82,14 @@ a:hover {
 }
 .card.bg-dark .card-body {
 	padding: 1.25rem;
+}
+#row-search a {
+	color : inherit;
+	text-decoration: none;
+}
+#row-search a:hover .card {
+	transition: 0.4s;
+	background: #25292d;
 }
 
 /* Button Styles */
