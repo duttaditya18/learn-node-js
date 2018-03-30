@@ -54,22 +54,6 @@ a:hover {
 .text-center {
 	text-align: center;
 }
-.search-top[type=text] {
-	background-image: url(../images/searchicon.png);
-    background-position: 10px 8px;
-	background-repeat: no-repeat;
-	padding: 7px 20px 7px 40px;
-	margin-left: 100px;
-    width: 120px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-}
-.search-top[type=text]:focus {
-    width: 200px;
-}
-.nav-form {
-	margin: 0;
-}
 .card.bg-dark {
 	background: #343a40;
 	border: 1px solid rgba(0,0,0,.125);
@@ -90,6 +74,12 @@ a:hover {
 #row-search a:hover .card {
 	transition: 0.4s;
 	background: #25292d;
+}
+#searchfield {
+	background-image: url(../images/searchicon.png);
+    background-position: 10px 8px;
+	background-repeat: no-repeat;
+	padding: 7px 20px 7px 40px;
 }
 
 /* Button Styles */

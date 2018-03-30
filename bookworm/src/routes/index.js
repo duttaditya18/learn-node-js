@@ -33,21 +33,6 @@ router.get('/search', function(req, res, next) {
   });
 });
 
-// POST /search
-router.post('/search', function(req, res, next) {
-  user.find({}, function(err, users) {
-    if(err) {
-      return next(err);
-    }
-    var userMap = [];
-
-    users.forEach(function(user, i) {
-      userMap[i] = user.name;
-    });
-    return res.send(userMap);
-  });
-});
-
 // GET /logout
 router.get('/logout', function(req, res, next) {
   if(req.session) {
