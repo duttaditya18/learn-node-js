@@ -8,7 +8,5 @@
   },
   "author": "duttaditya18",
   "license": "ISC",
-  "dependencies": {
-    "linkifyjs": "^2.1.6"
-  }
+  "dependencies": {}
 }
