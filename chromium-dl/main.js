@@ -1,5 +1,6 @@
 const https = require('https');
 const fs = require('fs');
+const linkify = require('linkifyjs');
 
 var redirectLinkFinder = (url) => {
     https.get(url, (resp) => {
@@ -10,7 +11,7 @@ var redirectLinkFinder = (url) => {
         });
 
         resp.on('end', () => {
-            var url =  anchorme(data);
+            var url = linkify.find(data);
             console.log(url);
         });
     }).on("error", (err) => {
