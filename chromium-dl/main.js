@@ -1,6 +1,22 @@
 const https = require('https');
 const fs = require('fs');
-const anchorme = require("anchorme")
+
+var redirectLinkFinder = (url) => {
+    https.get(url, (resp) => {
+        let data = '';
+
+        resp.on('data', (chunk) => {
+            data += chunk;
+        });
+
+        resp.on('end', () => {
+            var url =  anchorme(data);
+            console.log(url);
+        });
+    }).on("error", (err) => {
+        console.log("Error: " + err.message);
+    });
+}
 
 var downloadFile = (url, cb) => {
     var file = fs.createWriteStream('chromium-sync.exe');
@@ -15,7 +31,7 @@ var downloadFile = (url, cb) => {
     });
 };
 
-const options = {
+var options = {
     host: 'api.github.com',
     path: '/repos/henrypp/chromium/releases/latest',
     headers: { 'User-Agent': 'Mozilla/5.0' }
@@ -29,10 +45,8 @@ https.get(options, (resp) => {
     });
 
     resp.on('end', () => {
-        const url = JSON.parse(data).assets[0].browser_download_url;
-        downloadFile(url, () => {
-            
-        });
+        var url = JSON.parse(data).assets[0].browser_download_url;
+        redirectLinkFinder(url);
         console.log(url);
     });
 
