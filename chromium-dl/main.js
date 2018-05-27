@@ -1,6 +1,6 @@
 const https = require('https');
 const fs = require('fs');
-const linkify = require('linkifyjs');
+const cheerio = require('cheerio')
 
 var redirectLinkFinder = (url) => {
     https.get(url, (resp) => {
@@ -11,8 +11,9 @@ var redirectLinkFinder = (url) => {
         });
 
         resp.on('end', () => {
-            var url = linkify.find(data);
-            console.log(url);
+            const $ = cheerio.load(data);
+            var url = $('a').attr('href'); 
+            downloadFile(url);
         });
     }).on("error", (err) => {
         console.log("Error: " + err.message);
