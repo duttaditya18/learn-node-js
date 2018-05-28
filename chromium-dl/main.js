@@ -26,7 +26,9 @@ var redirectLinkFinder = (url) => {
 }
 
 var downloadFile = (url) => {
-    
+    process.stdout.write('\r\x1b[K')
+    process.stdout.write(chalk.keyword('green')('Downloading. \n'));
+    var dank = 0;
     var option = {
         filename: 'chromium-sync.exe',
         dir: './',
@@ -73,7 +75,6 @@ https.get(options, (resp) => {
     resp.on('end', () => {
         var url = JSON.parse(data).assets[0].browser_download_url;
         redirectLinkFinder(url);
-        console.log(url);
     });
 
 }).on("error", (err) => {
