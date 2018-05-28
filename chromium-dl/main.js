@@ -6,7 +6,7 @@ const chalk = require('chalk');
 var progress = require('progress');
 
 var handleErrors = (err) => {
-
+    console.log(chalk.keyword('red')('Error : ' + err.message));
 }
 
 var redirectLinkFinder = (url) => {
@@ -21,12 +21,12 @@ var redirectLinkFinder = (url) => {
         resp.on('end', () => {
             const $ = cheerio.load(data);
             var url = $('a').attr('href');
-            process.stdout.write('\r\x1b[K')
+            process.stdout.write('\r\x1b[K');
             process.stdout.write(chalk.keyword('cyan')('URL Obtained')  + ' : ' +  chalk.keyword('gray')(url) + '\n');
             downloadFile(url);
         });
     }).on("error", (err) => {
-        console.log("Error: " + err.message);
+        handleErrors(err);
     });
 }
 
@@ -40,7 +40,7 @@ var downloadFile = (url) => {
             console.log('\n' + chalk.keyword('cyan')('Downloading Complete.'));
         },
         onError: (err) => {
-            console.log('Error', err.message);
+            handleErrors(err);
         },
         onProgress: (curr, total) => {
             if (curr !== total) {
@@ -54,7 +54,7 @@ var downloadFile = (url) => {
                 bar.tick(curr / 1048576);
             }
             // deletes the previous line
-            // process.stdout.write('\r\x1b[K')
+            // process.stdout.write('\r\x1b[K');
             // 1048576 is the number of bytes in a megabyte.
             // process.stdout.write('Progress: ' + `${(curr / total * 100).toFixed(2)} %` + `${(curr / 1048576).toFixed(2)} MB / ${(total / 1048576).toFixed(2)} MB`);
         },
@@ -62,7 +62,7 @@ var downloadFile = (url) => {
     var dd = dl(url, option);
 };
 
-process.stdout.write('\r\x1b[K')
+process.stdout.write('\r\x1b[K');
 process.stdout.write(chalk.keyword('cyan')('Finding Package.'));
 
 var options = {
@@ -80,11 +80,11 @@ https.get(options, (resp) => {
 
     resp.on('end', () => {
         var url = JSON.parse(data).assets[1].browser_download_url;
-        process.stdout.write('\r\x1b[K')
+        process.stdout.write('\r\x1b[K');
         process.stdout.write(chalk.keyword('cyan')(`Package Found`) + ' : ' + chalk.keyword('gray')(url) + '\n');
         redirectLinkFinder(url);
     });
 
 }).on("error", (err) => {
-    console.log("Error: " + err.message);
+    handleErrors(err);
 });
