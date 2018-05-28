@@ -9,7 +9,9 @@
   "author": "duttaditya18",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^2.4.1",
     "cheerio": "^1.0.0-rc.2",
-    "download-file-with-progressbar": "^1.2.3"
+    "download-file-with-progressbar": "^1.2.3",
+    "progress": "^2.0.0"
   }
 }
