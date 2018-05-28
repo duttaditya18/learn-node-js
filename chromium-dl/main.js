@@ -2,8 +2,12 @@ const https = require('https');
 const fs = require('fs');
 const cheerio = require('cheerio')
 const dl = require('download-file-with-progressbar');
+const chalk = require('chalk');
+var progress = require('progress');
 
 var redirectLinkFinder = (url) => {
+    process.stdout.write('\r\x1b[K')
+    process.stdout.write(chalk.keyword('green')('Obtaining URL.'));
     https.get(url, (resp) => {
         let data = '';
 
@@ -33,13 +37,25 @@ var downloadFile = (url) => {
             console.log('Error', err.message);
         },
         onProgress: (curr, total) => {
-            process.stdout.write("\r\x1b[K")
+            var bar = new progress('[:bar] ' + chalk.keyword('green')(':percent') + chalk.keyword('yellow')(`  ${(curr / 1048576).toFixed(2)} MB`) + chalk.keyword('gray')(` / ${(total / 1048576).toFixed(2)} MB`), {
+                complete: chalk.bgKeyword('white').keyword('black')(' '),
+                incomplete: chalk.keyword('gray')('-'),
+                width: 50,
+                total: total / 1048576
+            });
+            dank = curr - dank;
+            bar.tick(curr / 1048576);
+            // deletes the previous line
+            // process.stdout.write('\r\x1b[K')
             // 1048576 is the number of bytes in a megabyte.
-            process.stdout.write(`Progress: ${(curr / total * 100).toFixed(2)} %   |   ${(curr / 1048576).toFixed(2)} MB / ${(total / 1048576).toFixed(2)} MB`);
+            // process.stdout.write('Progress: ' + `${(curr / total * 100).toFixed(2)} %` + `${(curr / 1048576).toFixed(2)} MB / ${(total / 1048576).toFixed(2)} MB`);
         },
     }
     var dd = dl(url, option);
 };
+
+process.stdout.write('\r\x1b[K')
+process.stdout.write(chalk.keyword('green')('Finding Package.'));
 
 var options = {
     host: 'api.github.com',
