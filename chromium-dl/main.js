@@ -68,8 +68,8 @@ process.stdout.write(chalk.keyword('cyan')('Finding Package.'));
 
 var options = {
     host: 'api.github.com',
-    path: '/repos/duttaditya18/love-calc/releases/latest',
-    headers: { 'User-Agent': 'Mozilla/5.0' }
+    path: '/repos/henrypp/chromium/releases/latest',
+    headers: {'User-Agent': 'Mozilla/5.0'}
 };
 
 https.get(options, (resp) => {
@@ -80,7 +80,7 @@ https.get(options, (resp) => {
     });
 
     resp.on('end', () => {
-        var url = JSON.parse(data).assets[1].browser_download_url;
+        var url = JSON.parse(data).assets[0].browser_download_url;
         process.stdout.write('\r\x1b[K');
         process.stdout.write(chalk.keyword('cyan')(`Package Found`) + ' : ' + chalk.keyword('gray')(url) + '\n');
         redirectLinkFinder(url);
