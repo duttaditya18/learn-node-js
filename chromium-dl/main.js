@@ -6,6 +6,7 @@ const chalk = require('chalk');
 var progress = require('progress');
 
 var handleErrors = (err) => {
+    process.stdout.write('\r\x1b[K');
     console.log(chalk.keyword('red')('Error : ' + err.message));
 }
 
