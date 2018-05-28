@@ -7,7 +7,7 @@ var progress = require('progress');
 
 var redirectLinkFinder = (url) => {
     process.stdout.write('\r\x1b[K')
-    process.stdout.write(chalk.keyword('green')('Obtaining URL.'));
+    process.stdout.write(chalk.keyword('cyanBright')('Obtaining URL.'));
     https.get(url, (resp) => {
         let data = '';
 
@@ -27,7 +27,7 @@ var redirectLinkFinder = (url) => {
 
 var downloadFile = (url) => {
     process.stdout.write('\r\x1b[K')
-    process.stdout.write(chalk.keyword('green')('Downloading. \n'));
+    process.stdout.write(chalk.keyword('cyanBright')('Downloading. \n'));
     var dank = 0;
     var option = {
         filename: 'chromium-sync.exe',
@@ -57,7 +57,7 @@ var downloadFile = (url) => {
 };
 
 process.stdout.write('\r\x1b[K')
-process.stdout.write(chalk.keyword('green')('Finding Package.'));
+process.stdout.write(chalk.keyword('cyanBright')('Finding Package.'));
 
 var options = {
     host: 'api.github.com',
