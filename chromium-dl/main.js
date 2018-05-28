@@ -6,7 +6,7 @@ const chalk = require('chalk');
 var progress = require('progress');
 
 var redirectLinkFinder = (url) => {
-    process.stdout.write(chalk.keyword('magenta')('Obtaining URL.'));
+    process.stdout.write(chalk.keyword('cyan')('Obtaining URL.'));
     https.get(url, (resp) => {
         let data = '';
 
@@ -18,7 +18,7 @@ var redirectLinkFinder = (url) => {
             const $ = cheerio.load(data);
             var url = $('a').attr('href');
             process.stdout.write('\r\x1b[K')
-            process.stdout.write(chalk.keyword('magenta')('URL Obtained')  + ' : ' +  chalk.keyword('gray')(url) + '\n');
+            process.stdout.write(chalk.keyword('cyan')('URL Obtained')  + ' : ' +  chalk.keyword('gray')(url) + '\n');
             downloadFile(url);
         });
     }).on("error", (err) => {
@@ -27,14 +27,14 @@ var redirectLinkFinder = (url) => {
 }
 
 var downloadFile = (url) => {
-    process.stdout.write(chalk.keyword('magenta')('Downloading. \n'));
+    process.stdout.write(chalk.keyword('cyan')('Downloading. \n'));
     var dank = 0;
     var option = {
         filename: 'chromium-sync.exe',
         dir: './',
         onDone: (info) => {
             process.stdout.write('\r\x1b[K')
-            process.stdout.write(chalk.keyword('magenta')('Downloading Complete.'));
+            process.stdout.write(chalk.keyword('cyan')('Downloading Complete.'));
         },
         onError: (err) => {
             console.log('Error', err.message);
@@ -58,7 +58,7 @@ var downloadFile = (url) => {
 };
 
 process.stdout.write('\r\x1b[K')
-process.stdout.write(chalk.keyword('magenta')('Finding Package.'));
+process.stdout.write(chalk.keyword('cyan')('Finding Package.'));
 
 var options = {
     host: 'api.github.com',
@@ -75,9 +75,9 @@ https.get(options, (resp) => {
 
     resp.on('end', () => {
         var url = JSON.parse(data).assets[0].browser_download_url;
-        redirectLinkFinder(url);
         process.stdout.write('\r\x1b[K')
-        process.stdout.write(chalk.keyword('magenta')(`Package Found`) + ' : ' + chalk.keyword('gray')(url) + '\n');
+        process.stdout.write(chalk.keyword('cyan')(`Package Found`) + ' : ' + chalk.keyword('gray')(url) + '\n');
+        redirectLinkFinder(url);
     });
 
 }).on("error", (err) => {
