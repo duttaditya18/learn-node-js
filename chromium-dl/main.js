@@ -1,6 +1,7 @@
 const https = require('https');
 const fs = require('fs');
 const cheerio = require('cheerio')
+const dl = require('download-file-with-progressbar');
 
 var redirectLinkFinder = (url) => {
     https.get(url, (resp) => {
@@ -12,7 +13,7 @@ var redirectLinkFinder = (url) => {
 
         resp.on('end', () => {
             const $ = cheerio.load(data);
-            var url = $('a').attr('href'); 
+            var url = $('a').attr('href');
             downloadFile(url);
         });
     }).on("error", (err) => {
@@ -20,17 +21,24 @@ var redirectLinkFinder = (url) => {
     });
 }
 
-var downloadFile = (url, cb) => {
-    var file = fs.createWriteStream('chromium-sync.exe');
-    var request = https.get(url, (response) => {
-        response.pipe(file);
-        file.on('finish', () => {
-            file.close(cb);
-        });
-    }).on('error', (err) => {
-        fs.unlink(dest);
-        console.log("Error: " + err.message);
-    });
+var downloadFile = (url) => {
+    
+    var option = {
+        filename: 'chromium-sync.exe',
+        dir: './',
+        onDone: (info) => {
+            console.log('done', info);
+        },
+        onError: (err) => {
+            console.log('Error', err.message);
+        },
+        onProgress: (curr, total) => {
+            process.stdout.write("\r\x1b[K")
+            // 1048576 is the number of bytes in a megabyte.
+            process.stdout.write(`Progress: ${(curr / total * 100).toFixed(2)} %   |   ${(curr / 1048576).toFixed(2)} MB / ${(total / 1048576).toFixed(2)} MB`);
+        },
+    }
+    var dd = dl(url, option);
 };
 
 var options = {
