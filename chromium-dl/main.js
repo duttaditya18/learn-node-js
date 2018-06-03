@@ -63,6 +63,7 @@ var downloadFile = (url) => {
     var dd = dl(url, option);
 };
 
+var type = 1;
 process.stdout.write('\r\x1b[K');
 process.stdout.write(chalk.keyword('cyan')('Finding Package.'));
 
