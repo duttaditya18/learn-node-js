@@ -68,6 +68,7 @@ if(process.argv[2] === "--old" || process.argv[2] === "-o") {
     type = 0;
 } else if(process.argv[2] === "--help" || process.argv[2] === "-h" || process.argv[2] !== undefined) {
     console.log(chalk.keyword('cyan')("usage: ") +"npm start [-h] [-o]\n");
+    console.log(chalk.keyword('cyan')("Options:"));
     console.log("\t" + chalk.keyword('gray')("-h, --help") + "                 shows the help menu");
 process.stdout.write('\r\x1b[K');
 process.stdout.write(chalk.keyword('cyan')('Finding Package.'));
