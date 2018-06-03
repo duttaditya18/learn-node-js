@@ -64,6 +64,7 @@ var downloadFile = (url) => {
 };
 
 var type = 1;
+if(process.argv[2] === "--old" || process.argv[2] === "-o") {
 process.stdout.write('\r\x1b[K');
 process.stdout.write(chalk.keyword('cyan')('Finding Package.'));
 
