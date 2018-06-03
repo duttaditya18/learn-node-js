@@ -92,6 +92,7 @@ https.get(options, (resp) => {
     });
 
     resp.on('end', () => {
+        var url = JSON.parse(data)[type].assets[0].browser_download_url;
         process.stdout.write('\r\x1b[K');
         process.stdout.write(chalk.keyword('cyan')(`Package Found`) + ' : ' + chalk.keyword('gray')(url) + '\n');
         redirectLinkFinder(url);
