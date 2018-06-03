@@ -71,6 +71,7 @@ if(process.argv[2] === "--old" || process.argv[2] === "-o") {
     console.log(chalk.keyword('cyan')("usage: ") +"npm start [-h] [-o]\n");
     console.log(chalk.keyword('cyan')("Options:"));
     console.log("\t" + chalk.keyword('gray')("-h, --help") + "                 shows the help menu");
+    console.log("\t" + chalk.keyword('gray')("-o, --old") + "                  downloads the 32-bit version of Chromium")
 process.stdout.write('\r\x1b[K');
 process.stdout.write(chalk.keyword('cyan')('Finding Package.'));
 
