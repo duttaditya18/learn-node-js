@@ -80,7 +80,6 @@ process.stdout.write(chalk.keyword('cyan')('Finding Package.'));
 
 var options = {
     host: 'api.github.com',
-    path: '/repos/henrypp/chromium/releases/latest',
     headers: {'User-Agent': 'Mozilla/5.0'}
 };
 
