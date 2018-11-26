@@ -13,11 +13,17 @@
 
       const ul = document.querySelector("ul");
 
+      // Add Item
       ipcRenderer.on("item:add", (e, item) => {
         const li = document.createElement("li");
         const itemText = document.createTextNode(item);
         li.appendChild(itemText);
         ul.appendChild(li);
+      });
+
+      // Clear Items
+      ipcRenderer.on("item:clear", () => {
+        ul.innerHTML = "";
       });
     </script>
   </body>
