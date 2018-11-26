@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>shopping-list</title>
+  </head>
+  <body>
+    <h1>shopping-list</h1>
+    <ul></ul>
+
+    <script>
+      const electron = require("electron");
+      const { ipcRenderer } = electron;
+
+      const ul = document.querySelector("ul");
+
+      ipcRenderer.on("item:add", (e, item) => {
+        const li = document.createElement("li");
+        const itemText = document.createTextNode(item);
+        li.appendChild(itemText);
+        ul.appendChild(li);
+      });
+    </script>
+  </body>
+</html>

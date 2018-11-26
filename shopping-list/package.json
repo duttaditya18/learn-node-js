@@ -1,0 +1,22 @@
+{
+  "name": "shopping-list",
+  "version": "1.0.0",
+  "description": "Shopping List Desktop App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duttaditya18/learn-node-js.git"
+  },
+  "author": "duttaditya18",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/duttaditya18/learn-node-js/issues"
+  },
+  "homepage": "https://github.com/duttaditya18/learn-node-js#readme",
+  "dependencies": {
+    "electron": "^3.0.10"
+  }
+}
