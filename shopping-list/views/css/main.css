@@ -1,0 +1,6 @@
+span.badge.new {
+  cursor: pointer;
+}
+span.badge.new:after {
+  content: "";
+}

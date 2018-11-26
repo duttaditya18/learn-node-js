@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Shopping List</title>
+    <link rel="stylesheet" href="css/materialize.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">Shopping List</a>
+      </div>
+    </nav>
+    <ul></ul>
+
+    <script src="js/materialize.min.js"></script>
+    <script>
+      const electron = require("electron");
+      const { ipcRenderer } = electron;
+
+      const ul = document.querySelector("ul");
+
+      // Add Item
+      ipcRenderer.on("item:add", (e, item) => {
+        ul.className = "collection";
+        const li = document.createElement("li");
+        li.className = "collection-item";
+        const itemText = document.createTextNode(item);
+        var span = document.createElement("span");
+        span.innerHTML = "Delete";
+        span.className = "badge new red hoverable waves-effect waves-light";
+        span.onclick = removeElement;
+        li.appendChild(itemText);
+        li.appendChild(span);
+        ul.appendChild(li);
+      });
+
+      function removeElement(e) {
+        console.log(e.path[1].remove());
+        if (ul.children.length == 0) {
+          ul.className = "";
+        }
+      }
+
+      // Clear Items
+      ipcRenderer.on("item:clear", () => {
+        ul.innerHTML = "";
+        ul.className = "";
+      });
+    </script>
+  </body>
+</html>

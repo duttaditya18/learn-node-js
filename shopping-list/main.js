@@ -15,7 +15,7 @@ app.on("ready", () => {
   // Load HTML into Window
   mainWindow.loadURL(
     url.format({
-      pathname: path.join(__dirname, "mainWindow.html"),
+      pathname: path.join(__dirname, "views/mainWindow.html"),
       protocol: "file:",
       slashes: true
     })
@@ -45,7 +45,7 @@ function createAddWindow() {
   // Load HTML into Window
   addWindow.loadURL(
     url.format({
-      pathname: path.join(__dirname, "addWindow.html"),
+      pathname: path.join(__dirname, "views/addWindow.html"),
       protocol: "file:",
       slashes: true
     })
@@ -70,6 +70,7 @@ const mainMenuTemplate = [
     submenu: [
       {
         label: "Add Item",
+        accelerator: process.platform == "darwin" ? "Command+N" : "Ctrl+N",
         click() {
           createAddWindow();
         }
