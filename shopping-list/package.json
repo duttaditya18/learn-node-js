@@ -19,10 +19,9 @@
     "url": "https://github.com/duttaditya18/learn-node-js/issues"
   },
   "homepage": "https://github.com/duttaditya18/learn-node-js#readme",
-  "dependencies": {
-    "electron": "^3.0.10"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "electron": "^3.0.10",
     "electron-packager": "^12.2.0"
   }
 }

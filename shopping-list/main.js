@@ -97,6 +97,9 @@ if (process.platform == "darwin") {
   mainMenuTemplate.unshift({});
 }
 
+// Uncomment this line when Packing
+// process.env.NODE_ENV = "production";
+
 // Add Developer Tools item if not in production
 if (process.env.NODE_ENV !== "production") {
   mainMenuTemplate.push({
