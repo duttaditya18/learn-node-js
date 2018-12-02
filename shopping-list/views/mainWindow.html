@@ -8,14 +8,14 @@
   </head>
   <body>
     <nav>
-      <div class="nav-wrapper">
+      <div class="nav-wrapper teal">
         <a href="#" class="brand-logo center">Shopping List</a>
       </div>
     </nav>
     <ul></ul>
 
     <div class="fixed-action-btn">
-      <a class="btn-floating btn-large red">
+      <a class="btn-floating btn-large teal">
         <i class="large material-icons">mode_edit</i>
       </a>
       <ul>
@@ -34,7 +34,7 @@
             class="btn-floating green waves-effect waves-light tooltipped"
             data-position="top"
             data-tooltip="Add New Item"
-            onclick="addItem()"
+            onclick="openAddItemWindow()"
           >
             <i class="material-icons">add</i>
           </a>
@@ -43,45 +43,6 @@
     </div>
 
     <script src="js/materialize.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <script>
-      const electron = require("electron");
-      const { ipcRenderer } = electron;
-
-      const ul = document.querySelector("ul");
-
-      // Add Item
-      ipcRenderer.on("item:add", (e, item) => {
-        ul.className = "collection";
-        const li = document.createElement("li");
-        li.className = "collection-item";
-        var div = document.createElement("div");
-        div.innerHTML = `${item}<a onclick='removeElement(this)' class="secondary-content"><i class="material-icons red-text">delete</i></a>`;
-        console.log(div);
-        li.appendChild(div);
-        ul.appendChild(li);
-      });
-
-      function removeElement(el) {
-        el.parentElement.parentElement.outerHTML = "";
-        if (ul.children.length == 0) {
-          ul.className = "";
-        }
-      }
-
-      function addItem() {
-        ipcRenderer.send("item:openAdd");
-      }
-      function delItems() {
-        ul.innerHTML = "";
-        ul.className = "";
-      }
-
-      // Clear Items
-      ipcRenderer.on("item:clear", () => {
-        ul.innerHTML = "";
-        ul.className = "";
-      });
-    </script>
+    <script src="js/mainScripts.js"></script>
   </body>
 </html>
