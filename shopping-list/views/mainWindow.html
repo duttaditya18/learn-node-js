@@ -55,18 +55,15 @@
         ul.className = "collection";
         const li = document.createElement("li");
         li.className = "collection-item";
-        const itemText = document.createTextNode(item);
-        var span = document.createElement("span");
-        span.innerHTML = "Delete";
-        span.className = "badge new red hoverable waves-effect waves-light";
-        span.onclick = removeElement;
-        li.appendChild(itemText);
-        li.appendChild(span);
+        var div = document.createElement("div");
+        div.innerHTML = `${item}<a onclick='removeElement(this)' class="secondary-content"><i class="material-icons red-text">delete</i></a>`;
+        console.log(div);
+        li.appendChild(div);
         ul.appendChild(li);
       });
 
-      function removeElement(e) {
-        e.path[1].remove();
+      function removeElement(el) {
+        el.parentElement.parentElement.outerHTML = "";
         if (ul.children.length == 0) {
           ul.className = "";
         }
